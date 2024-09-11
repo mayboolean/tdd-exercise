@@ -12,7 +12,7 @@ def blackjack_score(hand):
         if card in VALID_CARDS:
             if isinstance(card, int):
                 score += card
-            elif card == "Jack" or card == "Queen" or card == "King":
+            elif isinstance(card, str) and not card == "Ace":
                 score += 10
             elif card == "Ace":
                 ace_count += 1
@@ -23,7 +23,7 @@ def blackjack_score(hand):
             
     ace_value = 11
     for i in range(ace_count):
-        if score + ace_value > 21:
+        if score + ace_value + (ace_count-1) > 21:
             ace_value = 1
         score += ace_value    
     
